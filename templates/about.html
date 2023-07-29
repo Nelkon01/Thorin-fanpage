@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>{{ page_title }}</h2>
+
+<!--iterating through the company dictionary from company.json data -->
+{% for item in company %}
+    <div class="row featurette">
+        {%if loop.index % 2 == 0%}
+            <div class="col-md-7">
+                <h3><a href="/about/{{ item.url }}">{{loop.index}}.{{ item.name }}</a></h3>
+                <p>{{ item.description }}</p>
+            </div>
+            <div class="col-md-5">
+                <img src="{{ item.image_source }}" alt="" class="featurette-image image-responsive">
+            </div>
+        {% else %}
+            <div class="col-md-5">
+                <img src="{{ item.image_source }}" alt="" class="featurette-image image-responsive">
+            </div>
+            <div class="col-md-7">
+                <h3><a href="/about/{{ item.url }}">{{loop.index}}.{{ item.name }}</a></h3>
+                <p>{{ item.description }}</p>
+            </div>
+        {% endif %}
+    </div>
+    {% if not loop.last %}
+        <hr class="featurette-divider">
+    {% endif %}
+
+
+
+{% endfor %}
+
+
+
+{% endblock %}
